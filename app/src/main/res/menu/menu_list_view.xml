@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.all.credstore.activities.CredentialListActivity">
+
+    <item
+        android:id="@+id/pin_update"
+        android:orderInCategory="1"
+        android:title="Update PIN"
+        android:onClick="onOptionsItemSelected"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/log_out"
+        android:orderInCategory="100"
+        android:title="Log Out"
+        android:onClick="onOptionsItemSelected"
+        app:showAsAction="always|withText" />
+
+    <item android:id="@+id/export_data"
+        android:orderInCategory="2"
+        android:title="Export"
+        android:onClick="onOptionsItemSelected"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/import_data"
+        android:orderInCategory="3"
+        android:title="Import from exported data"
+        android:onClick="onOptionsItemSelected"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/minmz_option"
+        android:orderInCategory="4"
+        android:checkable="true"
+        android:checked="false"
+        app:actionViewClass="android.widget.CheckBox"
+        android:title="Minimize > Move to Login"
+        android:onClick="onOptionsItemSelected"
+        app:showAsAction="always" />
+</menu>

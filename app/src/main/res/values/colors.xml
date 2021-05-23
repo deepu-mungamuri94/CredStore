@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="pagePackground">#F0F8FF</color>
+    <color name="appTextColor">#000080</color>
+    <color name="lowColor">#455371</color>
+    <color name="errorColor">#9E180F</color>
+    <color name="greenColor">#0B6B0F</color>
+    <color name="orangeColor">#CA8014</color>
+    <color name="blackColor">#010413</color>\
+
+    <color name="clickBackColor">#51BDC2C3</color>
+</resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/detail_view_scroller" android:fillViewport="true" style="@style/page"
+    xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout tools:context=".activities.ViewCredentialActivity"
+        android:id="@+id/detail_view_page" style="@style/page">
+
+        <TextView android:id="@+id/view_cred_heading" style="@style/page_header"
+            android:text="@string/VIEW_CREDENTIALS_HEADING" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+        <!--
+        <TextView android:id="@+id/record_id" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:visibility="gone" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/view_cred_heading" />
+        -->
+
+        <TextView
+            android:id="@+id/view_cred_error" style="@style/error_view" android:visibility="gone" android:textColor="@color/lowColor" android:textSize="30sp"
+            android:text="@string/NO_DATA_ERR_MSG" android:layout_height="match_parent" android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/view_cred_heading" />
+
+        <LinearLayout android:id="@+id/view_cred_img" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/view_cred_heading" android:orientation="horizontal">
+            <ImageView android:id="@+id/detail_view_icon" style="@style/logo_img_view" android:layout_marginTop="30dp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/table_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/view_cred_img" android:gravity="center_horizontal">
+            <TableLayout android:id="@+id/details_table" android:visibility="visible"
+                android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginVertical="20dp">
+                <TableRow style="@style/details_table_row" android:orientation="horizontal">
+                    <TextView android:text="Tag : " style="@style/table_data.field_name"/>
+                    <TextView android:id="@+id/tag_field_value" style="@style/table_data.field_value" android:text="-" />
+                </TableRow>
+
+                <TableRow style="@style/details_table_row">
+                    <TextView android:text="URL : " style="@style/table_data.field_name"/>
+                    <TextView android:id="@+id/url_field_value" android:text="-" style="@style/table_data.field_value"/>
+                </TableRow>
+
+                <TableRow style="@style/details_table_row">
+                    <TextView android:text="Username : " style="@style/table_data.field_name"/>
+                    <TextView android:id="@+id/username_field_value" android:text="-" style="@style/table_data.field_value"/>
+                </TableRow>
+
+                <TableRow style="@style/details_table_row">
+                    <TextView android:text="Password : " style="@style/table_data.field_name"/>
+                    <TextView android:id="@+id/pwd_field_value" android:text="-" style="@style/table_data.field_value"/>
+                </TableRow>
+
+                <TableRow style="@style/details_table_row">
+                    <TextView android:text="Secret : " style="@style/table_data.field_name"/>
+                    <TextView android:id="@+id/secret_key_field_value" android:text="-" style="@style/table_data.field_value"/>
+                </TableRow>
+
+                <TableRow style="@style/details_table_row">
+                    <TextView android:text="Comments : " style="@style/table_data.field_name"/>
+                    <TextView android:id="@+id/comments_field_value" android:text="-" style="@style/table_data.field_value"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="bottom" android:layout_marginVertical="20dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/table_layout" >
+            <GridLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:columnCount="3" >
+                <Button android:id="@+id/view_cred_back_btn" android:text="BACK" android:onClick="listView" style="@style/button" android:layout_gravity="left" />
+                <Button android:id="@+id/view_cred_edit_btn" android:text="EDIT" android:onClick="updateDetails" style="@style/button" android:backgroundTint="@color/greenColor" android:layout_gravity="center" android:layout_columnWeight="1"/>
+                <Button android:id="@+id/view_cred_delete_btn" android:text="DELETE" android:onClick="deleteDetails" style="@style/button" android:backgroundTint="@color/errorColor" android:layout_gravity="right" />
+            </GridLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

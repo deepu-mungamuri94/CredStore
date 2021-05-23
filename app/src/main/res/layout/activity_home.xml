@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.HomeActivity">
+
+    <LinearLayout android:id="@+id/tiles"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blackColor"
+        android:orientation="vertical"
+        android:weightSum="100">
+        <TextView android:id="@+id/creds_tile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:textStyle="bold"
+            android:background="@drawable/border_round"
+            android:textColor="#CE7C03"
+            android:textSize="30dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Credentials"
+            android:onClick="showCredentialPage"/>
+        <TextView android:id="@+id/expense_tile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:textStyle="bold"
+            android:textColor="#CE7C03"
+            android:background="@drawable/border_round"
+            android:backgroundTint="#000000"
+            android:textSize="30dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Expenses"
+            android:onClick="showExpensePage" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

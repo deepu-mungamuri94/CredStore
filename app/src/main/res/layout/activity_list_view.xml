@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/cred_list_page" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    style="@style/page" tools:context=".activities.CredentialListActivity" android:clickable="true" android:onClick="hideKeyboard">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_new"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp" android:layout_marginBottom="30dp" app:maxImageSize="30dp"
+        android:clickable="true" android:onClick="addNewCredential"
+        app:srcCompat="@android:drawable/ic_input_add" app:backgroundTint="@color/appTextColor"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/listview_search_bar_layout" android:layout_width="match_parent" android:layout_height="50dp" android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="5dp" android:orientation="horizontal" android:onClick="hideKeyboard" android:clickable="true">
+
+        <ImageButton android:id="@+id/menu_icon"
+            android:layout_width="25dp" android:layout_height="match_parent"
+            android:onClick="showMenu" android:background="@android:color/transparent" android:src="@drawable/menu_icon"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout" app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText android:id="@+id/list_search_field" style="@style/form_field_end_img" android:layout_marginLeft="15dp" android:hint="Search with tags ..." />
+
+        <Button android:id="@+id/search_button" android:layout_width="40dp" android:layout_marginLeft="-40dp"
+            style="@style/text_field_eye" android:background="@drawable/border_round" android:foreground="@android:drawable/ic_menu_search" android:onClick="searchCredentials" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/list_status_detail_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/listview_search_bar_layout" app:layout_constraintStart_toStartOf="parent" android:layout_margin="15dp" android:gravity="right">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textStyle="bold" android:textSize="13sp" android:text="Total Results: " />
+        <TextView android:id="@+id/list_size" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textStyle="bold" android:textSize="13sp" android:textColor="@color/greenColor" android:paddingHorizontal="2dp" android:text="0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/list_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:onClick="hideKeyboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_status_detail_layout">
+
+        <TextView
+            android:id="@+id/no_data_found"
+            style="@style/error_view"
+            android:layout_gravity="center"
+            android:text="@string/NO_DATA_ERR_MSG"
+            android:textColor="#D0D0DF"
+            android:textSize="30sp"
+            android:gravity="center_vertical"
+            android:layout_height="300dp"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:clickable="true"
+            android:onClick="hideKeyboard" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

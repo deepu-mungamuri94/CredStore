@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/cred_list_page" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    style="@style/page" tools:context=".activities.ExpensesListActivity" android:clickable="true" android:onClick="hideKeyboard">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_new_exp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp" android:layout_marginBottom="30dp" app:maxImageSize="30dp"
+        android:clickable="true" android:onClick="addExpense"
+        app:srcCompat="@android:drawable/ic_input_add" app:backgroundTint="@color/appTextColor"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout android:id="@+id/exp_listview_search_bar_layout" android:layout_width="match_parent" android:layout_height="50dp" android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="5dp" android:orientation="horizontal" android:onClick="hideKeyboard" android:clickable="true">
+
+        <ImageButton android:id="@+id/exp_menu_icon"
+            android:layout_width="25dp" android:layout_height="match_parent"
+            android:onClick="showMenu" android:background="@android:color/transparent" android:src="@drawable/menu_icon"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout" app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText android:id="@+id/exp_list_search_field" style="@style/form_field_end_img" android:layout_marginLeft="15dp" android:hint="Search with comment ..." />
+
+        <Button android:id="@+id/exp_search_button" android:layout_width="40dp" android:layout_marginLeft="-40dp"
+            style="@style/text_field_eye" android:background="@drawable/border_round" android:foreground="@android:drawable/ic_menu_search" android:onClick="searchExpenses" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/list_status_detail_layout_exp" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/exp_listview_search_bar_layout" app:layout_constraintStart_toStartOf="parent" android:layout_margin="15dp" android:gravity="left">
+        <Spinner
+            android:id="@+id/years_dropdown"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border_round"
+            android:spinnerMode="dropdown"
+            android:prompt="Year" android:layout_marginLeft="35dp" />
+
+        <Spinner
+            android:id="@+id/month_dropdown"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border_round"
+            android:spinnerMode="dropdown"
+            android:prompt="Month" android:layout_marginHorizontal="10dp" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+            android:textStyle="bold" android:textSize="13sp" android:text="Total Results: " android:paddingVertical="10dp" />
+
+        <TextView android:id="@+id/exp_list_size" android:layout_width="wrap_content" android:layout_height="match_parent"
+            android:textStyle="bold" android:textSize="13sp" android:textColor="@color/greenColor" android:paddingHorizontal="2dp" android:paddingVertical="10dp" android:text="0" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
