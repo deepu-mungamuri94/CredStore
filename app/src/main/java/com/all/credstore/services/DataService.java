@@ -55,7 +55,7 @@ public class DataService extends SQLiteOpenHelper {
         String create_table_query = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(256), %s VARCHAR(1024), %s VARCHAR(1024), %s VARCHAR(256), %s VARCHAR(1024), %s VARCHAR(1024))", USER_PASS_TABLE, COLUMN_ID, COLUMN_TAG, COLUMN_UNAME, COLUMN_PWD, COLUMN_URL, SECRET_KEY, COLUMN_COMMENT);
         db.execSQL(create_table_query);
 
-        String create_table_expense = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT, %s VARCHAR(1024)), %s INT(11) DEFAULT UNIX_TIMESTAMP(NOW())", EXPENSE_TABLE, COLUMN_ID, COLUMN_COST, COLUMN_COMMENT, COLUMN_TIME);
+        String create_table_expense = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT, %s VARCHAR(1024), %s TIMESTAMP DEFAULT CURRENT_TIMESTAMP)", EXPENSE_TABLE, COLUMN_ID, COLUMN_COST, COLUMN_COMMENT, COLUMN_TIME);
         db.execSQL(create_table_expense);
     }
 

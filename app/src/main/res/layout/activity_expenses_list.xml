@@ -34,7 +34,7 @@
             android:layout_height="40dp"
             android:background="@drawable/border_round"
             android:spinnerMode="dropdown"
-            android:prompt="Year" android:layout_marginLeft="35dp" />
+             android:layout_marginLeft="35dp" />
 
         <Spinner
             android:id="@+id/month_dropdown"
@@ -42,7 +42,7 @@
             android:layout_height="40dp"
             android:background="@drawable/border_round"
             android:spinnerMode="dropdown"
-            android:prompt="Month" android:layout_marginHorizontal="10dp" />
+             android:layout_marginHorizontal="10dp" />
 
         <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
             android:textStyle="bold" android:textSize="13sp" android:text="Total Results: " android:paddingVertical="10dp" />

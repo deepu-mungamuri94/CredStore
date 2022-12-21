@@ -23,6 +23,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class ExportImportService {
 
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/plain");
+        intent.setType("text/txt");
         appCompatActivity.startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
@@ -59,16 +61,16 @@ public class ExportImportService {
             fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             appCompatActivity.startActivity(Intent.createChooser(fileIntent, appCompatActivity.getString(R.string.EXPORT_TITLE)));
         } catch (Exception ex) {
-            Toast.makeText(appCompatActivity, "Failed to export data. Error :" + ex.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(appCompatActivity, "Failed to export data. Error :" + ex.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull int[] grantResults, AppCompatActivity appCompatActivity) {
         if(requestCode == ExportImportService.PERMISSION_REQUEST_STORAGE) {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.PERMISSION_GRANTED), Toast.LENGTH_SHORT);
+                Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.PERMISSION_GRANTED), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.PERMISSION_DENIED), Toast.LENGTH_SHORT);
+                Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.PERMISSION_DENIED), Toast.LENGTH_SHORT).show();
                 appCompatActivity.finish();
             }
         }
@@ -78,21 +80,21 @@ public class ExportImportService {
         if (requestCode == ExportImportService.READ_REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK) {
             if (data != null) {
                 Uri uri = data.getData();
-                String path = uri.getPath();
-                path = path.substring(path.indexOf(":") + 1);
-                parseImportData(path, appCompatActivity);
+                //String path = uri.getPath();
+                //path = path.substring(path.indexOf(":") + 1);
+                parseImportData(uri, appCompatActivity);
             }
         }
         return null;
     }
 
-    private void parseImportData(String filePath, AppCompatActivity appCompatActivity) {
-        String data = readFile(filePath, appCompatActivity);
+    private void parseImportData(Uri uri, AppCompatActivity appCompatActivity) {
+        String data = readFile(uri, appCompatActivity);
         if(Util.isEmpty(data)) {
-            Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.NO_DATA_TO_IMPORT), Toast.LENGTH_LONG);
+            Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.NO_DATA_TO_IMPORT), Toast.LENGTH_LONG).show();
             return;
         }
-        Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.IMPORT_STARTED), Toast.LENGTH_SHORT);
+        Toast.makeText(appCompatActivity, appCompatActivity.getString(R.string.IMPORT_STARTED), Toast.LENGTH_SHORT).show();
         new DataService(appCompatActivity).saveImportedCredentials(data);
 
         Intent listPage = new Intent(appCompatActivity, CredentialListActivity.class);
@@ -100,18 +102,19 @@ public class ExportImportService {
         appCompatActivity.startActivity(listPage);
     }
 
-    private String readFile(String filePath, AppCompatActivity appCompatActivity) {
-        File file = new File(filePath);
+    private String readFile(Uri uri, AppCompatActivity appCompatActivity) {
         StringBuilder text = new StringBuilder();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            InputStream in = appCompatActivity.getContentResolver().openInputStream(uri);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String line;
             while((line = br.readLine()) != null) {
                 text.append(line);
             }
             br.close();
         } catch (Exception ex) {
-            Toast.makeText(appCompatActivity, "Import failed. Invalid file: " + ex.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(appCompatActivity, "Import failed. Invalid file: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d("100", ex.getMessage());
         }
         return text.toString();
     }

@@ -35,6 +35,7 @@ public class DeviceBiometrics {
                 supports = true;
                 break;
             default:
+                supports = false;
                 break;
         }
         return supports;
